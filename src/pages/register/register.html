@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar color="teal-300">
+    <ion-title>register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="user" (ngSubmit)="register()">
+    <ion-item>
+      <ion-label floating requeried>email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating requeried>password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <button ion-button full color="teal-800" type="submit" [disabled]="!user.valid">註冊</button>
+  </form>
+</ion-content>

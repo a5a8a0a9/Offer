@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="teal-300" text-center (click)="goTop()">
+    <ion-title>
+      <img src="assets/imgs/navbar1.png" />
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-item>
+    <ion-label>排序方式</ion-label>
+    <ion-select [(ngModel)]="orderOption">
+      <ion-option value="popularity">人氣</ion-option>
+      <ion-option value="date">最新</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list padding-left *ngIf="setData">
+    <ion-item no-padding *ngFor="let item of setData | orderBy: orderOption: ascending;let i = index">
+      <ion-thumbnail item-start>
+        <img *ngIf="item.poster" [src]="item.poster">
+        <img *ngIf="!item.poster" src="assets/imgs/logo01.png">
+      </ion-thumbnail>
+      <ion-row>
+        <ion-col col-8 (click)="goDetail(item)">
+          <span text-wrap>{{item.name | LongText6}}</span>
+          <p text-wrap [innerHTML]="item.description | LongText15"></p>
+        </ion-col>
+
+        <ion-col col-4>
+          <p (click)="like(item.id)"><ion-badge [ngStyle]="popStyle(item.id)" color="default"><ion-icon name="{{likeIcon}}"></ion-icon>&nbsp;&nbsp;{{item.popularity}}</ion-badge></p>
+          <p (click)="subscribe(item.id)"><ion-badge [ngStyle]="subStyle(item.id)"><ion-icon name="{{subIcon}}"></ion-icon>&nbsp;&nbsp;收藏</ion-badge></p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+  </ion-list>
+  <!--fab-->
+  <ion-fab right bottom>
+
+    <button ion-fab color="teal-400"><ion-icon name="menu"></ion-icon></button>
+
+    <ion-fab-list side="left">
+      <button ion-fab color="primary">完成</button>
+      <button ion-fab style="color:white;background-color: #ff6699" (click)="fabChange('sub')">收藏</button>
+      <button ion-fab color="teal-300" (click)="fabChange('all')">全部</button>
+    </ion-fab-list>
+
+  </ion-fab>
+</ion-content>

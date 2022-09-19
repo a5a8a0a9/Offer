@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="teal-300" text-center>
+
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu" color="teal-50"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>
+      <img src="assets/imgs/navbar1.png" />
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+
+  <ion-list padding-left *ngIf="setData">
+    <ion-item no-padding *ngFor="let item of setData">
+      <ion-thumbnail item-start>
+        <img [src]="item.poster">
+      </ion-thumbnail>
+      <ion-row>
+        <ion-col col-8 (click)="goDetail(item)">
+          <span text-wrap>{{item.name}}</span>
+          <p text-wrap [innerHTML]="item.description | LongText15"></p>
+        </ion-col>
+
+        <ion-col col-4>
+          <p><ion-badge color="default"><ion-icon name="ios-thumbs-up-outline"></ion-icon>&nbsp;&nbsp;{{item.popularity}}</ion-badge></p>
+          <p><ion-badge color="default"><ion-icon name="md-heart-outline"></ion-icon>&nbsp;&nbsp;收藏</ion-badge></p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

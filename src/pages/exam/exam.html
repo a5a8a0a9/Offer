@@ -1,0 +1,167 @@
+<ion-header>
+  <ion-navbar color="teal-300">
+    <ion-title>{{examData.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-card *ngIf="current==0" class="card-shadow">
+    <ion-card-title class="card-title-0">Q.1</ion-card-title>
+    <ion-card-content>
+      <h1>{{examData.Q1.title}}</h1>
+      <ion-list>
+        <ion-item (click)="selAns(1,0,examData.Q1.A1)" [ngStyle]="selcStyle(selected[0],0)">
+          <ion-label>
+            {{examData.Q1.A1}}
+          </ion-label>
+        </ion-item>
+        <ion-item (click)="selAns(1,1,examData.Q1.A2)" [ngStyle]="selcStyle(selected[0],1)">
+          <ion-label>
+            {{examData.Q1.A2}}
+          </ion-label>
+        </ion-item>
+        <ion-item (click)="selAns(1,2,examData.Q1.A3)" [ngStyle]="selcStyle(selected[0],2)">
+          <ion-label>
+            {{examData.Q1.A3}}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>  
+  </ion-card>
+
+  <ion-card *ngIf="current==1" class="card-shadow">
+    <ion-card-title class="card-title-0">Q.2</ion-card-title>
+    <ion-card-content>
+      <h1>{{examData.Q2.title}}</h1>
+      <ion-list>
+        <ion-item (click)="selAns(2,0,examData.Q2.A1)" [ngStyle]="selcStyle(selected[1],0)">
+          <ion-label>
+            {{examData.Q2.A1}}
+          </ion-label>
+        </ion-item>
+        <ion-item (click)="selAns(2,1,examData.Q2.A2)" [ngStyle]="selcStyle(selected[1],1)">
+            <ion-label>
+              {{examData.Q2.A2}}
+            </ion-label>
+          </ion-item>
+        <ion-item (click)="selAns(2,2,examData.Q2.A3)" [ngStyle]="selcStyle(selected[1],2)">
+          <ion-label>
+            {{examData.Q2.A3}}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>   
+  </ion-card>
+
+  <ion-card *ngIf="current==2" class="card-shadow">
+    <ion-card-title class="card-title-0">Q.3</ion-card-title>
+    <ion-card-content>
+      <h1>{{examData.Q3.title}}</h1>
+      <ion-list>
+        <ion-item (click)="selAns(3,0,examData.Q3.A1)" [ngStyle]="selcStyle(selected[2],0)">
+          <ion-label>
+            {{examData.Q3.A1}}
+          </ion-label>
+        </ion-item>
+        <ion-item (click)="selAns(3,1,examData.Q3.A2)" [ngStyle]="selcStyle(selected[2],1)">
+          <ion-label>
+            {{examData.Q3.A2}}
+          </ion-label>
+        </ion-item>
+        <ion-item (click)="selAns(3,2,examData.Q3.A3)" [ngStyle]="selcStyle(selected[2],2)">
+          <ion-label>
+            {{examData.Q3.A3}}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>  
+  </ion-card>
+ 
+  <ion-buttons>
+    <button ion-button [ngStyle]="pagerStyle(current,0)" (click)="current=0">1</button>
+    <button ion-button [ngStyle]="pagerStyle(current,1)" (click)="current=1">2</button>
+    <button ion-button [ngStyle]="pagerStyle(current,2)" (click)="current=2">3</button>
+  </ion-buttons>
+
+  <button ion-button full color="teal-300" [disabled]="count!=3" (click)="result()">完成</button>
+  
+  <!--<ion-grid *ngIf="current==1">
+    <ion-row>
+      <ion-col col-6>
+        <ion-card (click)="f()" color="secondary">
+          <ion-label>
+            A2
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card (click)="f()" color="secondary">
+          <ion-label>
+            B2
+          </ion-label>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card (click)="f()" color="secondary">
+          <ion-label>
+            C2
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card (click)="f()" color="secondary">
+          <ion-label>
+            D2
+          </ion-label>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="current==2">
+    <ion-row>
+      <ion-col col-6>
+        <ion-card (click)="f()" color="danger">
+          <ion-label>
+            A3
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card (click)="f()" color="danger">
+          <ion-label>
+            B3
+          </ion-label>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card (click)="f()" color="danger">
+          <ion-label>
+            C3
+          </ion-label>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card (click)="f()" color="danger">
+          <ion-label>
+            D3
+          </ion-label>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>-->
+
+  <!--<ion-label>
+    <ion-col *ngFor="let page of pager">
+      <button ion-button (click)="current=page-1">
+        {{ page }}
+      </button>
+    </ion-col>
+  </ion-label>
+  <button ion-button outline *ngIf="count==3">SongTrue</button>-->
+
+</ion-content>

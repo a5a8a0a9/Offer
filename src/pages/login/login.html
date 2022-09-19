@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar color="teal-300" text-center>
+    <ion-title>登入</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="user" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label floating requeried>email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating requeried>password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <button ion-button full color="teal-900" type="submit" [disabled]="!user.valid">登入</button>
+  </form>
+
+  <button ion-button full color="teal-800" (click)="register()">註冊</button>
+</ion-content>

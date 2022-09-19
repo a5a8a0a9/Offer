@@ -1,0 +1,17 @@
+page-store-detail {
+  font-family: "Microsoft JhengHei";
+
+  .bg-content {
+    background: color($colors, teal-100);
+  }
+
+  .bg-hr {
+    background-color: #009688;
+  }
+
+  .content1{
+    background: color($colors,teal-50);
+    border-radius: 30px;
+
+  }
+}

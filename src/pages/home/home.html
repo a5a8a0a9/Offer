@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar color="teal-300" text-center (click)="goTop()">    
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu" color="teal-50"></ion-icon>
+      </button>
+    </ion-buttons>    
+    <img src="assets/imgs/navbar2.png"/>
+  </ion-navbar>  
+</ion-header>
+<ion-content padding style="background-color:#b2dfdb">  
+  <!--<h2>Welcome to OFFer</h2>-->
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-card *ngFor="let item of storeData;let i = index" (click)="goStore(item)">
+    <img *ngIf="item.img" [src]="item.img" />
+    <img *ngIf="!item.img" src="assets/imgs/icon.png" />
+    <ion-card-content>
+      <ion-card-title>
+        <strong>{{item.name}}</strong>
+      </ion-card-title>
+      <p text-wrap text-left [innerHTML]="item.descript | LongText30"></p>      
+      <!--<hr style="background-color:#009688" />
+      <ion-row>
+        <ion-col col-6 text-center>
+          <ion-badge color="teal-400"><ion-icon name="ios-thumbs-up-outline"></ion-icon>&nbsp;&nbsp;711</ion-badge>
+          </ion-col>        
+        <ion-col col-6 text-center>
+          <ion-badge color="teal-400"><ion-icon name="ios-chatbubbles-outline"></ion-icon>&nbsp;&nbsp;777</ion-badge>
+        </ion-col>
+      </ion-row>-->      
+    </ion-card-content>
+  </ion-card>
+
+
+  <!--<ion-fab right bottom>
+
+    <button ion-fab color="teal-400"><ion-icon name="md-egg"></ion-icon></button>
+
+    <ion-fab-list side="left">
+      <button ion-fab color="primary"><ion-icon name="ios-egg-outline"></ion-icon></button>
+      <button ion-fab style="color:white;background-color: #ff6699"><ion-icon name="ios-egg-outline"></ion-icon></button>
+      <button ion-fab color="teal-300"><ion-icon name="ios-egg-outline"></ion-icon></button>
+    </ion-fab-list>
+
+    <ion-fab-list side="top">
+      <button ion-fab color="primary" (click)="fab=!fab"><ion-icon name="md-egg"></ion-icon></button>
+    </ion-fab-list>
+
+  </ion-fab>
+  <ion-fab *ngIf="fab" center middle>
+    <button ion-fab color="teal-400"><ion-icon name="md-egg"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="primary"><ion-icon name="ios-egg-outline"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="bottom">
+      <button ion-fab color="secondary"><ion-icon name="ios-egg-outline"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="left">
+      <button ion-fab color="danger"><ion-icon name="ios-egg-outline"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="right">
+      <button ion-fab color="dark"><ion-icon name="ios-egg-outline"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>-->
+</ion-content>

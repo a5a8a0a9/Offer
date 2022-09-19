@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar color="teal-300" class="nav-bar" (click)="goTop()">
+    <!--<ion-title>store detail</ion-title>-->
+    <img src="assets/imgs/navbar4.png" />
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="bg-content">
+
+  <ion-card *ngIf="storeData">
+    <img *ngIf="storeData.img" [src]="storeData.img" />
+    <img *ngIf="!storeData.img" src="assets/imgs/icon.png" />
+    <ion-card-content>
+      <ion-card-title text-center>
+        {{storeData.name}}
+      </ion-card-title>
+      <hr class="bg-hr" />
+      <button ion-item text-center color="teal-50" (click)="goQanda(storeData)">看優惠</button>
+      <hr class="bg-hr" />
+      <p text-wrap [innerHTML]="storeData.descript"></p>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="storeData">
+    <ion-card-content text-center>
+      <ion-card-title style="background-color:#b2dfdb">
+        有話大家說
+      </ion-card-title>
+      <hr class="bg-hr" />
+
+
+      <ion-list *ngIf="comment==''">
+        <ion-card class="content1">
+          <ion-card-content text-left text-wrap>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前沒有評論哦~
+          </ion-card-content>
+        </ion-card>
+        <ion-item *ngIf="editing">
+          <ion-label floating>
+            留下你的想法吧
+          </ion-label>
+          <ion-textarea [(ngModel)]="newcomment">
+          </ion-textarea>
+        </ion-item>
+        <ion-item>
+          <button ion-button round color="teal-300" (click)="send(storeData.$key)" *ngIf="editing">
+            送出
+          </button>
+        </ion-item>
+      </ion-list>
+
+
+      <ion-list *ngIf="comment!=''">
+        <ion-card *ngFor="let com of comment" class="content1">
+          <ion-card-content text-left text-wrap>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{com}}
+          </ion-card-content>
+        </ion-card>
+        <ion-item *ngIf="editing">
+          <ion-label floating>
+            留下你的想法吧
+          </ion-label>
+          <ion-textarea [(ngModel)]="newcomment">
+          </ion-textarea>
+        </ion-item>
+        <ion-item>
+          <button ion-button round color="teal-300" (click)="send(storeData.$key)" *ngIf="editing">
+            送出
+          </button>
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-fab right bottom>
+    <button ion-fab color="teal-400" (click)="edit()"><ion-icon name="md-create"></ion-icon></button>
+  </ion-fab>
+
+
+</ion-content>
+

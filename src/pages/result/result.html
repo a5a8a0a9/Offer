@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar hideBackButton color="teal-300">
+    <ion-title>result</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding text-center>
+
+
+  <ion-item style="font-size:20px">
+    <span>恭喜獲得：</span>
+    <br />
+    <div float-left><strong>{{data.reward}}</strong></div>
+    <div float-right>
+      <ion-badge color="teal-400" *ngIf="!exchange" (click)="conv()">兌換</ion-badge>
+      <ion-badge color="teal-100" *ngIf="exchange">已兌換</ion-badge>
+    </div>
+  </ion-item>
+
+
+  <ion-card style="box-shadow:3px 3px 2px grey">
+    <ion-card-title class="cardTitle" (click)="open=!open">
+      {{open?'不想看結果':'看結果'}}
+    </ion-card-title>
+    <ion-card-content *ngIf="open">
+      <ion-list>
+        <ion-label *ngFor="let a of ans">
+          <!--<h2 [ngStyle]="getStyle(i)">{{a}}</h2>-->
+          <p style="color:#32db64">{{a}}</p>          
+        </ion-label>
+      <hr style="background-color:#009688"/>
+        <ion-label *ngFor="let selA of selAns;let i = index">
+          <p style="color:#32db64" *ngIf="res[i]"><ion-icon name="md-checkmark"></ion-icon></p>
+          <p style="color:#f53d3d" *ngIf="!res[i]"><ion-icon name="md-close"></ion-icon>{{selA}}</p>          
+        </ion-label>
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+  <button ion-button color="teal-300" (click)="back()">回首頁</button>
+</ion-content>

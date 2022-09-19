@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="teal-300">
+    <!--<ion-title>{{examData.name}}</ion-title>-->
+    <img src="assets/imgs/navbar3.png" />
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background-color:#b2dfdb">
+  <ion-card>
+    <img *ngIf="examData.poster" [src]="examData.poster" />
+    <img *ngIf="!examData.poster" src="assets/imgs/logo03.png" />
+    <ion-card-content>
+      <ion-card-title>
+        {{examData.name}}
+      </ion-card-title>
+
+      <span [innerHTML]="examData.description"></span>
+
+      <hr style="background-color:#009688" />
+
+
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button block color="teal-700" (click)="goStore(examData)">看店家</button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button block color="teal-700" (click)="goExam()" [disabled]="examData.R==('')">測驗去</button>
+        </ion-col>
+      </ion-row>
+
+      <hr style="background-color:#009688" />
+
+      <ion-badge end color="teal-400"><ion-icon name="ios-thumbs-up-outline"></ion-icon>&nbsp;&nbsp;{{examData.popularity}}</ion-badge>
+      <!--<ion-list>
+        <ion-card *ngFor="let a of arr" color="teal-50">
+          <p text-wrap>{{examData.description}}</p>
+        </ion-card>
+      </ion-list>-->
+
+      <!--<ion-badge color="teal-400"><ion-icon name="ios-chatbubbles-outline"></ion-icon>&nbsp;&nbsp;{{examData.flow}}</ion-badge>-->
+
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

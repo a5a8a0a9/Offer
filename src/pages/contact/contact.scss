@@ -1,0 +1,15 @@
+page-contact {
+  font-family: "Microsoft JhengHei";
+
+  .card {
+    border-radius: 30px;
+
+    .bg-hr {
+      background-color: #009688;
+    }
+
+    .bg-card-title {
+      background: color($colors,teal-300);
+    }
+  }
+}

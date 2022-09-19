@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-navbar color="teal-300" text-center>
+
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>
+      <img src="assets/imgs/navbar1.png" />
+    </ion-title>
+  </ion-navbar>
+  <ion-segment [(ngModel)]="segmentButton" color="light" style="background-color:#80cbc4">
+    <ion-segment-button value="all">
+      <strong>全部</strong>
+    </ion-segment-button>
+    <ion-segment-button value="subscribe">
+      <strong>已訂閱</strong>
+    </ion-segment-button>
+    <ion-segment-button value="finished">
+      <strong>已完成</strong>
+    </ion-segment-button>
+  </ion-segment>
+
+</ion-header>
+<ion-content [ngSwitch]="segmentButton">
+
+  <!--<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>-->
+  <ion-searchbar></ion-searchbar>
+
+  <ion-list *ngSwitchCase="'all'" padding-left>
+    <ion-item>
+      <ion-label>排序方式</ion-label>
+      <ion-select [(ngModel)]="opt">
+        <ion-option value="popu">人氣</ion-option>
+        <ion-option value="date">最新上架</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-padding *ngFor="let item of data;let i = index">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo01.png">
+      </ion-thumbnail>
+      <ion-row>
+        <ion-col col-8 (click)="goDetail(item)">
+          <h2>{{item.name}}</h2>
+          <p text-wrap [innerHTML]="item.description | LongText30"></p>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <p><ion-badge (click)="like=!like" [ngStyle]="getStyle('like')" color="teal-400"><ion-icon name="ios-thumbs-up-outline"></ion-icon>&nbsp;&nbsp;{{item.popularity}}</ion-badge></p>
+          <p><ion-badge color="teal-400"><ion-icon name="ios-chatbubbles-outline"></ion-icon>&nbsp;&nbsp;{{item.flow}}</ion-badge></p>
+          <p><ion-badge (click)="subClick(i)" [ngStyle]="getStyle('sub',item.subscribed,i)"><ion-icon name="md-heart-outline"></ion-icon>&nbsp;&nbsp;收藏</ion-badge></p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'subscribe'" padding-left>
+
+    <ion-item>
+      <ion-label>排序方式</ion-label>
+      <ion-select [(ngModel)]="opt">
+        <ion-option value="popu">人氣</ion-option>
+        <ion-option value="date">最新上架</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-padding *ngFor="let item of subdata">
+      <ion-thumbnail item-start>
+        <img src="item.poster">
+      </ion-thumbnail>
+      <ion-row>
+        <ion-col col-8 (click)="goDetail(item)">
+          <h2>{{item.name}}</h2>
+          <p text-wrap [innerHTML]="item.description | LongText30"></p>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <p><ion-badge (click)="like=!like" [ngStyle]="getStyle('like')" color="teal-400"><ion-icon name="ios-thumbs-up-outline"></ion-icon>&nbsp;&nbsp;{{item.popularity}}</ion-badge></p>
+          <p><ion-badge color="teal-400"><ion-icon name="ios-chatbubbles-outline"></ion-icon>&nbsp;&nbsp;{{item.flow}}</ion-badge></p>
+          <p><ion-badge (click)="subClick(i)" [ngStyle]="getStyle('sub',item.subscribed,i)"><ion-icon name="md-heart-outline"></ion-icon>&nbsp;&nbsp;收藏</ion-badge></p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngSwitchCase="'finished'" padding-left>
+
+    <ion-item>
+      <ion-label>排序方式</ion-label>
+      <ion-select [(ngModel)]="opt">
+        <ion-option value="popu">人氣</ion-option>
+        <ion-option value="date">最新上架</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-padding *ngFor="let item of setData">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/logo02.png">
+      </ion-thumbnail>
+      <ion-row>
+        <ion-col col-8 (click)="goDetail(item)">
+          <h2>{{item.name}}</h2>
+          <p text-wrap [innerHTML]="item.description | LongText30"></p>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <p><ion-badge (click)="like=!like" [ngStyle]="getStyle('like')" color="teal-400"><ion-icon name="ios-thumbs-up-outline"></ion-icon>&nbsp;&nbsp;{{item.popularity}}</ion-badge></p>
+          <!--<p><ion-badge color="teal-400"><ion-icon name="ios-chatbubbles-outline"></ion-icon>&nbsp;&nbsp;{{item.flow}}</ion-badge></p>-->
+          <p><ion-badge (click)="sub=!sub" [ngStyle]="getStyle('sub')"><ion-icon name="md-heart-outline"></ion-icon>&nbsp;&nbsp;收藏</ion-badge></p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

@@ -13,3 +13,6 @@
 - tech
   - 資料庫: firebase 
   - 前端框架 angular, ionic
+
+- 畫面
+https://drive.google.com/drive/folders/1uSWJ2UET0wzn2CwA1CBPIcgiEcwSAlE5?usp=sharing
